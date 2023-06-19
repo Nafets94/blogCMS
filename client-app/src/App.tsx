@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
 import axios from 'axios';
+import { Container, CssBaseline, List, ListItem, ListItemIcon, ListItemText, Typography } from '@mui/material';
+import InboxIcon from '@mui/icons-material/Inbox';
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -15,18 +16,24 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <ul>
+    <>
+      <CssBaseline />
+      <Container maxWidth="lg" style={{backgroundColor: 'lightGray'}}>
+        <Typography variant="h1">My great Blog</Typography>
+        <List>
           {posts.map((post: any) => (
-            <li key={post.id}>
-              {post.title}
-            </li>
+            <ListItem key={post.id}>
+              <ListItemIcon>
+                <InboxIcon />
+              </ListItemIcon>
+              <ListItemText>
+                {post.title}
+              </ListItemText>
+            </ListItem>
           ))}
-        </ul>
-      </header>
-    </div>
+        </List>
+      </Container>
+    </>
   );
 }
 
