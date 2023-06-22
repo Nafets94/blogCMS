@@ -15,7 +15,7 @@ namespace API.Controllers
         [HttpGet("{id}")] //api/posts/{guid}
         public async Task<ActionResult<Post>> GetPost(Guid id)
         {
-            return Ok();
+            return await Mediator.Send(new Details.Query { Id = id });
         }
     }
 }
